@@ -25,3 +25,28 @@ export async function askGenny(query: string) {
   });
   return completion.data.choices[0].message?.content;
 }
+
+export async function talkToGenny(audio) {
+  // Convert the audio to a readable stream
+  const audioStream = createReadStream(audio.path);
+
+  // Convert the audio format to wav
+  const { exec } = require('child_process');
+  const wavAudioPath = '/path/to/wav/audio/file';
+  await new Promise((resolve, reject) => {
+    const command = `ffmpeg -i ${audio.path} -acodec pcm_s16le -ar 16000 ${wavAudioPath}`;
+    exec(command, (err, stdout, stderr) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+  const wavAudioStream = createReadStream(wavAudioPath);
+
+  // Pass the wav audio stream to the OpenAI API for transcription
+  const resp = await openai.createTranscription(wavAudioStream, "whisper-1");
+  console.log(resp);
+  return resp.data[0].text;
+}

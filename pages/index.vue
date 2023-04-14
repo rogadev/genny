@@ -1,25 +1,21 @@
 <template>
-  <header class="chat-header">
-    <Navbar />
-  </header>
-  <main class="p-8">
-    <div class="grid grid-cols-3">
-      <div class="flex flex-col justify-center col-span-1">
-        <h1>Genny</h1>
-        <h2>An AI Assistant Powered by GPT-4</h2>
-      </div>
-      <div class="flex justify-evenly items-center col-span-2">
-        <NuxtLink to="/login">
-          <button class="btn btn-primary btn-wide">Login</button>
-        </NuxtLink>
-        <NuxtLink to="/register">
-          <button class="btn btn-secondary btn-wide">Register</button>
-        </NuxtLink>
-      </div>
+  <div class="grid grid-cols-3">
+    <div class="flex flex-col justify-center col-span-1">
+      <h1>Genny</h1>
+      <h2>An AI Assistant Powered by GPT-4</h2>
     </div>
-  </main>
+    <div class="flex justify-evenly items-center col-span-2">
+      <NuxtLink to="/onboarding">
+        <button class="btn btn-primary btn-wide">Get Started</button>
+      </NuxtLink>
+    </div>
+  </div>
 </template>
+
 <script lang="ts" setup>
+useHead({
+  title: 'Genny - An AI Assistant Powered by GPT-4',
+});
 const thinking = ref(false);
 const assistantMessage = ref('');
 const handleSubmit = async (e: Event) => {

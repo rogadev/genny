@@ -4,6 +4,7 @@ const { OPENAI_API_KEY: apiKey } = useRuntimeConfig();
 const model = "gpt-3.5-turbo";
 const configuration = new Configuration({ apiKey });
 const openai = new OpenAIApi(configuration);
+
 const generatePrompt = (content: string) => {
   return [
     {
@@ -17,8 +18,8 @@ const generatePrompt = (content: string) => {
   ];
 };
 
-export async function askGenny(query: string) {
-  const messages = generatePrompt(query);
+export async function askGenny(question: string) {
+  const messages = generatePrompt(question);
   const completion = await openai.createChatCompletion({
     model,
     messages,

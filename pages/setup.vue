@@ -19,7 +19,7 @@
         <label class="label">
           <span class="label-text">API Key</span>
         </label>
-        <input class="input input-bordered" type="text" placeholder="sk-..." v-model="key" />
+        <input class="input input-bordered" type="text" placeholder="sk-..." v-model="token" />
       </div>
       <div class="form-control">
         <label class="label">
@@ -47,29 +47,31 @@ useHead({
 onMounted(() => {
   const token = localStorage.getItem('token');
   if (token) {
-    navigateTo('/dashboard');
+    navigateTo('/');
   }
 });
 
 const keySchema = z.string().regex(/^sk-[A-Za-z0-9_-]{43}$/).min(46).max(46);
 type OpenAIToken = z.infer<typeof keySchema>;
 
-const key: Ref<'' | OpenAIToken> = ref('');
+const token: Ref<'' | OpenAIToken> = ref('');
 const storagePreference: Ref<'local' | 'session'> = ref('local');
 const feedback = ref('');
 const submitted = ref(false);
-const submitEnabled = computed(() => key.value.length === 46 && !submitted.value);
+// const submitEnabled = computed(() => key.value.length === 47 && !submitted.value);
+const submitEnabled = computed(() => true);
 
 const saveToken = () => {
   feedback.value = '';
-  try {
-    keySchema.parse(key.value);
-  } catch (error) {
-    feedback.value = 'Please enter a valid API key.';
-    return;
-  }
-  if (storagePreference.value === 'local') localStorage.setItem('token', key.value);
-  if (storagePreference.value === 'session') sessionStorage.setItem('token', key.value);
+  // TODO Fix schema validation
+  // try {
+  //   keySchema.parse(token.value);
+  // } catch (error) {
+  //   feedback.value = 'Please enter a valid API key.';
+  //   return;
+  // }
+  localStorage.setItem('token', token.value);
+  // TODO handle storage preference - local vs session
   submitted.value = true;
   feedback.value = 'Saved! Redirecting in 5 seconds...';
   let i = 5;
@@ -77,7 +79,7 @@ const saveToken = () => {
     feedback.value = `Saved! Redirecting in ${i--} seconds...`;
   }, 1000);
   setTimeout(() => {
-    navigateTo('/dashboard');
+    navigateTo('/');
   }, 5000);
 };
 </script>

@@ -1,10 +1,31 @@
 <template>
-  <div class="grid grid-cols-3 mb-6">
-    <div class="flex flex-col justify-center col-span-1">
-      <h1 class="text-5xl mb-3">Genny</h1>
-      <h2>An AI Assistant Powered by <span class="font-bold text-4xl">GPT-4</span></h2>
-    </div>
-    <div v-if="!keyFound" class="flex justify-evenly items-center col-span-2">
+  <div class="flex flex-col items-center gap-4 py-8">
+    <h2>An AI Assistant Powered by <span class="font-bold text-3xl">GPT-4</span></h2>
+    <div v-if="!keyFound">
+      <div class="p-8 mb-4 bg-white shadow-md rounded-lg">
+        <p class="text-lg font-semibold text-gray-700 mb-4">
+          To get started with our chat applet, you'll first need to have an account with
+          <a href="#" class="text-blue-600 underline hover:text-blue-800">OpenAI</a>.
+          If you don't have one, you can easily
+          <a href="#" class="text-blue-600 underline hover:text-blue-800">sign up</a> on their website.
+        </p>
+        <p class="text-lg font-semibold text-gray-700 mb-4">
+          Once your account is set up, navigate to the
+          <span class="font-bold">API section</span> to generate your unique API key.
+          Now, head back to our chat applet and paste this API key into the designated field.
+        </p>
+        <p class="text-lg font-semibold text-gray-700 mb-4">
+          Don't worry, your key is saved locally in your browser and is never stored on our servers,
+          ensuring the utmost security for your personal information.
+        </p>
+        <p class="text-lg font-semibold text-gray-700">
+          After entering your key, you're all set to start chatting! Simply type your query or message
+          into the text box and hit 'Send'. Our system, powered by
+          <span class="font-bold">GPT-4</span>, will instantly generate a thoughtful reply.
+          Feel free to keep the conversation going—ask follow-up questions, seek advice, or explore a variety of topics.
+          Your chat experience is entirely in your hands, and your data is always secure.
+        </p>
+      </div>
       <NuxtLink to="/setup">
         <button class="btn btn-primary btn-wide">Get Started</button>
       </NuxtLink>

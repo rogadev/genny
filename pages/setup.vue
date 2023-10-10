@@ -1,29 +1,30 @@
 <template>
-  <div class="prose mb-4">
-    <h1>Enter Your API Key</h1>
-    <p>
-      Genny uses your OpenAI API key to generate responses. Head over to OpenAI to get your key now -
-      <a class="link link-primary" href="https://platform.openai.com/account/api-keys" target="_blank">
-        OpenAi.com
+  <div class="p-8 bg-white shadow-md rounded-lg mb-4">
+    <h1 class="text-2xl font-bold text-gray-700 mb-4">Enter Your API Key</h1>
+    <p class="text-lg font-semibold text-gray-700 mb-4">
+      Head over to
+      <a href="https://platform.openai.com/account/api-keys" target="_blank"
+        class="text-blue-600 underline hover:text-blue-800">
+        OpenAI
       </a>
+      to get your API key if you haven't already.
     </p>
-    <p>
-      Genny doesn't save your API key on our servers. Instead, your key is saved in your browser and sent with each
-      request. You can choose to save it without setting an expiry, or select "session" if you're using a shared computer
-      or just wish to have the token erased from your computer when you close your browser window.
+    <p class="text-lg font-semibold text-gray-700 mb-4">
+      You can choose to save it without setting an expiry, or select "session" if you're using a shared computer or wish
+      to have the token erased when you close your browser window.
     </p>
   </div>
   <div>
-    <form @submit.prevent="saveToken">
-      <div class="form-control">
+    <form @submit.prevent="saveToken" class="p-8 bg-white shadow-md rounded-lg">
+      <div class="form-control mb-4">
         <label class="label">
-          <span class="label-text">API Key</span>
+          <span class="label-text text-lg font-semibold text-gray-700">API Key</span>
         </label>
         <input class="input input-bordered" type="text" placeholder="sk-..." v-model="token" />
       </div>
-      <div class="form-control">
+      <div class="form-control mb-4">
         <label class="label">
-          <span class="label-text">Storage Preference</span>
+          <span class="label-text text-lg font-semibold text-gray-700">Storage Preference</span>
         </label>
         <select class="select select-bordered w-full" v-model="storagePreference">
           <option value="local">Local</option>

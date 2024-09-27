@@ -1,42 +1,98 @@
-# Nuxt 3 Minimal Starter
+# Genny
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project was designed to create a simplified version of a chat agent that answers questions, unlike Apple Siri or Google Assistant. Toward the end of the project, the ChatGPT app was released, making this solution somewhat obsolete. Additionally, changes to the API key process have affected the functionality. However, the project remains a demonstration of my ability to quickly develop a solution within a day.
 
-## Setup
+## Table of Contents
 
-Make sure to install the dependencies:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Scripts](#scripts)
+- [Dependencies](#dependencies)
+- [Environment Variables](#environment-variables)
+
+## Installation
+
+To install the project, follow these steps:
 
 ```bash
-# yarn
-yarn install
 
-# npm
-npm install
+# Clone the repository
 
-# pnpm
+git clone https://github.com/yourusername/genny.git
+
+# Navigate into the project directory
+
+cd genny
+
+# Install the dependencies
+
 pnpm install
 ```
 
-## Development Server
+Make sure you have [pnpm](https://pnpm.io/) installed before proceeding.
 
-Start the development server on http://localhost:3000
+## Usage
 
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
+To start the development server, use the following command:
 
 ```bash
-npm run build
+pnpm dev
 ```
 
-Locally preview production build:
+For building the project, you can run:
 
 ```bash
-npm run preview
+pnpm build
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+To generate a static version of the site:
+
+```bash
+pnpm generate
+```
+
+To preview the built site:
+
+```bash
+pnpm preview
+```
+
+## Scripts
+
+The following scripts are defined in `package.json`:
+
+- `pnpm build`: Builds the project for production.
+- `pnpm dev`: Starts the development server.
+- `pnpm generate`: Generates a static version of the project.
+- `pnpm preview`: Previews the built site.
+- `pnpm postinstall`: Prepares the Nuxt environment after dependencies are installed.
+
+## Dependencies
+
+The project uses the following dependencies:
+
+- **@nuxtjs/tailwindcss**: A Nuxt module to use Tailwind CSS.
+- **@tailwindcss/typography**: Adds typography utilities to Tailwind CSS.
+- **nuxt**: A framework for building Vue.js applications.
+- **nuxt-icon**: A Nuxt module for handling icons.
+- **daisyui**: A plugin for Tailwind CSS that provides pre-built UI components.
+- **openai**: The official OpenAI package to interact with their API.
+- **theme-change**: A small utility to dynamically change themes.
+- **zod**: A TypeScript-first schema declaration and validation library.
+
+## Environment Variables
+
+To configure the project, you'll need to set up the following environment variables in a `.env` file:
+
+```bash
+
+# OpenAI API key for accessing GPT models
+
+OPENAI_API_KEY=your-openai-api-key
+
+# Base URL for API calls
+
+BASE_API_URL=https://your-api-url.com
+```
+
+Make sure to replace the placeholders with actual values.

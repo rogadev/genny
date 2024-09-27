@@ -5,7 +5,7 @@
     </div>
     <div class="navbar-center"></div>
     <div class="navbar-end">
-      <ThemeSelector />
+      <!-- May put theme selector back later -->
     </div>
   </nav>
 </template>

@@ -3,4 +3,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon'
   ],
+
+  compatibilityDate: '2024-09-27',
 });

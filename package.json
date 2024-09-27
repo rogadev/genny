@@ -9,15 +9,20 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.6.6",
-    "@tailwindcss/typography": "^0.5.9",
-    "nuxt": "^3.3.2",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@tailwindcss/typography": "^0.5.15",
+    "nuxt": "^3.13.2",
     "nuxt-icon": "^0.3.3"
   },
   "dependencies": {
-    "daisyui": "^2.51.5",
-    "openai": "^3.2.1",
+    "daisyui": "^2.52.0",
+    "openai": "^3.3.0",
     "theme-change": "^2.5.0",
-    "zod": "^3.21.4"
+    "zod": "^3.23.8"
+  },
+  "pnpm": {
+    "overrides": {
+      "axios@>=0.8.1 <0.28.0": ">=0.28.0"
+    }
   }
 }

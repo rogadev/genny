@@ -149,79 +149,79 @@ watch(messages, (newMessages, oldMessages) => {
 </script>
 
 <template>
-  <section class="flex flex-col items-center gap-4 py-8">
-    <h1 class="text-3xl font-bold">Genny - An AI Assistant Powered by GPT-4</h1>
+  <section class="flex flex-col items-center gap-10 py-16 bg-gray-50 min-h-screen px-4">
+    <h1 class="text-5xl font-extrabold text-gray-900 text-center leading-tight">
+      Genny - An AI Assistant Powered by GPT-4
+    </h1>
 
     <!-- Initial Instructions -->
-    <div v-if="!keyFound" class="p-8 mb-4 bg-white shadow-md rounded-lg">
-      <p class="text-lg font-semibold text-gray-700 mb-4">
+    <div v-if="!keyFound" class="p-8 bg-white shadow-lg rounded-xl max-w-2xl space-y-6">
+      <p class="text-lg text-gray-700">
         To get started with our chat applet, you'll first need to have an account with
-        <a href="https://openai.com" class="text-blue-600 underline hover:text-blue-800"
+        <a href="https://openai.com" class="text-blue-600 underline hover:text-blue-800 transition"
           aria-label="Sign up for OpenAI">
           OpenAI
         </a>. If you don't have one, you can easily
-        <a href="https://openai.com/signup" class="text-blue-600 underline hover:text-blue-800">
+        <a href="https://openai.com/signup" class="text-blue-600 underline hover:text-blue-800 transition">
           sign up
         </a>.
       </p>
-      <p class="text-lg font-semibold text-gray-700 mb-4">
+      <p class="text-lg text-gray-700">
         Once your account is set up, generate your unique API key from the
-        <span class="font-bold">API section</span>. Your key is stored securely in your browser.
+        <span class="font-semibold">API section</span>. Your key is stored securely in your browser.
       </p>
-      <p class="text-lg font-semibold text-gray-700">
+      <p class="text-lg text-gray-700">
         After entering your key, you're all set! Type your message into the text box and hit 'Send'.
       </p>
     </div>
 
+    <!-- Get Started Button -->
     <div v-if="!keyFound">
       <NuxtLink to="/setup">
-        <button class="btn btn-primary btn-wide" aria-label="Go to setup">Get Started</button>
+        <button
+          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full shadow-md transition-all transform hover:scale-105 focus:ring-4 focus:ring-blue-300">
+          Get Started
+        </button>
       </NuxtLink>
     </div>
 
     <!-- Chat Container -->
-    <div v-else class="chat-container flex flex-col items-center">
+    <div v-else class="chat-container flex flex-col items-center w-full max-w-2xl px-4 space-y-6">
       <!-- Messages -->
-      <div class="messages flex flex-col w-full max-w-2xl mb-4 px-4">
+      <div class="messages w-full space-y-4">
         <div v-for="(message, index) in messages" :key="index" :class="[
-          'message p-4 rounded-lg mb-2 max-w-3xl break-words',
-          message.role === 'user' ? 'bg-blue-500 text-white self-end' : 'bg-gray-200 text-black self-start'
+          'p-4 rounded-lg break-words shadow-md',
+          message.role === 'user' ? 'bg-blue-500 text-white self-end' : 'bg-gray-200 text-gray-800 self-start'
         ]">
           {{ message.role === 'system' ? 'Hello. What can I help with today?' : message.content }}
         </div>
       </div>
 
       <!-- Thinking Indicator -->
-      <progress v-show="thinking" class="progress w-full max-w-2xl mb-4"
+      <progress v-show="thinking" class="progress w-full bg-gray-300 rounded-lg"
         aria-label="Processing your request..."></progress>
 
       <!-- Error Feedback -->
-      <div v-if="hasError" class="error-message">
+      <div v-if="hasError" class="bg-red-100 text-red-700 p-4 rounded-lg w-full text-center shadow-sm">
         <p>{{ feedback }}</p>
-        <button @click="clearToken">Clear Token and Start Over</button>
+        <button @click="clearToken" class="text-red-600 hover:text-red-800 font-semibold transition-all">
+          Clear Token and Start Over
+        </button>
       </div>
 
       <!-- Input Form -->
-      <form @submit.prevent="handleSubmit" class="flex flex-col w-full max-w-2xl px-4 gap-2"
-        aria-labelledby="chat-form">
+      <form @submit.prevent="handleSubmit" class="w-full space-y-3" aria-labelledby="chat-form">
         <label for="userMessage" class="sr-only">Your message</label>
-        <input class="input input-bordered input-primary" ref="inputElement" :disabled="thinking" v-model="userMessage"
-          id="userMessage" placeholder="Type your message..." aria-required="true" />
-        <button class="btn btn-primary ml-auto px-10" type="submit" :disabled="thinking">Send</button>
+        <input
+          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 transition disabled:opacity-50"
+          ref="inputElement" :disabled="thinking" v-model="userMessage" id="userMessage"
+          placeholder="Type your message..." aria-required="true" />
+        <button
+          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:scale-105 self-end"
+          type="submit" :disabled="thinking">
+          Send
+        </button>
       </form>
-
     </div>
   </section>
 </template>
-
-<style scoped>
-h1 {
-  font-size: 2.5rem;
-}
-
-.message {
-  padding: 8px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-</style>

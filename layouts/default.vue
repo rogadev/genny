@@ -1,8 +1,11 @@
 <template>
-  <header class="chat-header">
+  <!-- Header Section -->
+  <header class="chat-header sticky top-0 bg-white shadow-md z-10">
     <Navbar />
   </header>
-  <main class="p-8">
+
+  <!-- Main Content -->
+  <main class="bg-gray-50 py-12 px-6 md:px-12 min-h-screen">
     <slot />
   </main>
 </template>
@@ -14,3 +17,12 @@ useHead({
   ],
 });
 </script>
+
+<style scoped>
+.chat-header {
+  /* Ensure a solid header with shadow for distinction */
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  /* Light gray border for subtle separation */
+}
+</style>
